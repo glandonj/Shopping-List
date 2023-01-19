@@ -22,18 +22,18 @@ foreach (KeyValuePair<string, decimal> kvp in menu)
 List<string> order = new List<string>();
 while (true)
 {
-    Console.Write("\nEnter an item name: ");
+    Console.Write("\nEnter an item name or type 'cart' to exit and pay: ");
     string item = Console.ReadLine().ToLower().Trim();
 
     if (menu.ContainsKey(item))
     {
         decimal cost = menu[item];
         order.Add(item);
-        Console.WriteLine($"{item} is ${cost}.");
+        Console.WriteLine($"{item} is ${cost}. It has been added to your order.");
         while (true)
         {
             Console.WriteLine($"Do you want to add another {item} to your order? y/n");
-            string response = Console.ReadLine();
+            string response = Console.ReadLine().ToLower().Trim();
             if (response == "n" || response == "no")
             {
                 break;
@@ -47,22 +47,12 @@ while (true)
                 Console.WriteLine("Invalid entry.");
             }
         }
-            Console.WriteLine("Would you like to add anything else to your order (y/n)?");
-            string answer = Console.ReadLine();
-            if (answer == "n" || answer == "no")
-            {
-                break;
-            }
-            else if (answer == "y" || answer == "yes")
-            {
-                break;
-            }
-            else
-            {
-                Console.WriteLine("Invalid entry.");
-            }
-        }
+    }
 
+    else if (item == "cart")
+    {
+        break;
+    }
     else
     {
         Console.WriteLine("Sorry, we do not have that item. Please try again.");
